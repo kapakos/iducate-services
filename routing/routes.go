@@ -2,7 +2,6 @@ package routing
 
 import (
 	"net/http"
-	"../middleware"
 )
 
 type Route struct {
@@ -18,12 +17,6 @@ var api = "/api"
 var version = "/v1"
 
 var routes = Routes {
-	Route{
-		"SetToken",
-		"POST",
-		api + version + "/set-token",
-		SetToken,
-	},
 	Route {
 		"Index",
 		"GET",
@@ -34,7 +27,7 @@ var routes = Routes {
 		"UserIndex",
 		"GET",
 		api + version + "/user",
-		middleware.Validate(UserIndex),
+		UserIndex,
 	},
 	Route {
 		"UserShow",
@@ -53,12 +46,6 @@ var routes = Routes {
 		"GET",
 		api + version + "/status",
 		Status,
-	},
-	Route {
-		"Logout",
-		"Get",
-		api + version + "/logout",
-		Logout,
 	},
 	Route {
 		"Udacity",
