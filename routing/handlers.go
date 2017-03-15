@@ -16,12 +16,6 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func UserIndex(w http.ResponseWriter, r *http.Request) {
-	/*claims, ok := r.Context().Value(middleware.MyKey).(model.Claims)
-	if !ok {
-		http.NotFound(w, r)
-		return
-	}
-*/
 	w.Header().Set("Content-Type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 
