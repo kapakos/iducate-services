@@ -1,0 +1,12 @@
+{
+  "name": "Iducate Services",
+  "description": "Iducate Rest API",
+  "keywords": [
+    "iducate",
+    "go"
+  ],
+  "image": "heroku/go:1.6",
+  "mount_dir": "src/github.com/kapakos/iducate-services",
+  "website": "http://github.com/kapakos/iducate-services",
+  "repository": "http://github.com/kapakos/iducate-services"
+}

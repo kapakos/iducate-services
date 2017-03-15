@@ -1,2 +1,4 @@
 .idea/
 main
+.env
+.docker_build/
