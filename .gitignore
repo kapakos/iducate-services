@@ -1,4 +1,5 @@
 .idea/
 main
+iducate-services
 .env
 .docker_build/
