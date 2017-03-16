@@ -7,8 +7,8 @@ import (
 	"github.com/gorilla/mux"
 	"io/ioutil"
 	"io"
-	"../model"
-	"../data"
+	"github.com/kapakos/iducate-services/model"
+	"github.com/kapakos/iducate-services/data"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {

@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"../middleware"
+	"github.com/kapakos/iducate-services/middleware"
 )
 
 func NewRouter() *mux.Router {

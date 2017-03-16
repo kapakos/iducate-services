@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
-	"./routing"
+	"github.com/kapakos/iducate-services/routing"
 )
 
 func main() {
