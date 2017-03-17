@@ -25,7 +25,9 @@ func main() {
 	log.Println("I'm in Main")
 	router := routing.NewRouter()
 
-	log.Fatal(http.ListenAndServe(addr, router))
+	if err := http.ListenAndServe(addr, router); err != nil {
+		panic(err)
+	}
 }
 
 

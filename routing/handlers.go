@@ -9,6 +9,7 @@ import (
 	"io"
 	"github.com/kapakos/iducate-services/model"
 	"github.com/kapakos/iducate-services/data"
+	"log"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -60,6 +61,7 @@ func UserCreate( w http.ResponseWriter, r * http.Request) {
 }
 
 func Status(w http.ResponseWriter, r *http.Request) {
+	log.Println("Servus Status")
 	w.Write([]byte("Api is up and running"))
 }
 
