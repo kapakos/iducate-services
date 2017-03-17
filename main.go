@@ -26,6 +26,7 @@ func main() {
 		log.Printf("Error converting $REPEAT to an int: %q - Using default\n", err)
 		repeat = 5
 	}
+	log.Println("I'm in Main")
 	router := routing.NewRouter()
 
 	log.Fatal(http.ListenAndServe(":" + port, router))

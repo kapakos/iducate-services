@@ -9,5 +9,8 @@
 			"revisionTime": "2017-02-28T22:43:54Z"
 		}
 	],
-	"rootPath": "github.com/kapakos/iducate-services"
+	"rootPath": "github.com/kapakos/iducate-services",
+	"heroku": {
+		"goVersion": "go1.8"
+	},
 }
