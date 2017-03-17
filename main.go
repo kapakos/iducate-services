@@ -5,12 +5,7 @@ import (
 	"net/http"
 	"github.com/kapakos/iducate-services/routing"
 	"os"
-	"strconv"
 	"fmt"
-)
-
-var (
-	repeat int
 )
 
 func determineListenAddress() (string, error) {
