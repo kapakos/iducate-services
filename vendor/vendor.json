@@ -12,5 +12,5 @@
 	"rootPath": "github.com/kapakos/iducate-services",
 	"heroku": {
 		"goVersion": "go1.8"
-	},
+	}
 }
