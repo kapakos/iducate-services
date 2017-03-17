@@ -6,30 +6,31 @@ import (
 	"github.com/kapakos/iducate-services/routing"
 	"os"
 	"strconv"
+	"fmt"
 )
 
 var (
 	repeat int
 )
 
-func main() {
-	var err error
+func determineListenAddress() (string, error) {
 	port := os.Getenv("PORT")
-
 	if port == "" {
-		log.Fatal("$PORT must be set")
+		return "", fmt.Errorf("$PORT not set")
+	}
+	return ":" + port, nil
+}
+
+func main() {
+	addr, err := determineListenAddress()
+	if err != nil {
+		log.Fatal(err)
 	}
 
-	tStr := os.Getenv("REPEAT")
-	repeat, err = strconv.Atoi(tStr)
-	if err != nil {
-		log.Printf("Error converting $REPEAT to an int: %q - Using default\n", err)
-		repeat = 5
-	}
 	log.Println("I'm in Main")
 	router := routing.NewRouter()
 
-	log.Fatal(http.ListenAndServe(":" + port, router))
+	log.Fatal(http.ListenAndServe(addr, router))
 }
 
 
