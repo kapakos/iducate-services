@@ -11,7 +11,8 @@ import (
 func determineListenAddress() (string, error) {
 	port := os.Getenv("PORT")
 	if port == "" {
-		return "", fmt.Errorf("$PORT not set")
+		// return "", fmt.Errorf("$PORT not set")
+		return ":8080", nil
 	}
 	return ":" + port, nil
 }
@@ -22,12 +23,12 @@ func main() {
 		log.Fatal(err)
 	}
 
-	log.Println("I'm in Main")
 	router := routing.NewRouter()
 
+	fmt.Println("listening on Port: " + addr)
 	if err := http.ListenAndServe(addr, router); err != nil {
 		panic(err)
-	}
+	} 
 }
 
 

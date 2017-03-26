@@ -53,4 +53,10 @@ var routes = Routes {
 		api + version + "/udacity-courses",
 		UdacityCourses,
 	},
+	Route {
+		"Coursera",
+		"Get",
+		api + version + "/coursera-courses",
+		CourseraCourses,
+	},
 }

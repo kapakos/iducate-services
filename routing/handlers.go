@@ -9,6 +9,7 @@ import (
 	"io"
 	"github.com/kapakos/iducate-services/model"
 	"github.com/kapakos/iducate-services/data"
+	"github.com/kapakos/iducate-services/config"
 	"log"
 )
 
@@ -65,8 +66,38 @@ func Status(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Api is up and running"))
 }
 
+func CourseraCourses (w http.ResponseWriter, r *http.Request) {
+	appConfig := config.Get()
+
+	url := appConfig.Endpoints.CourseraUrl
+	fmt.Println(url)
+	response, err := http.Get(url)
+	if err != nil {
+		panic(err)
+	} else {
+		defer response.Body.Close()
+		courseList := model.CourseraCourseCollection{}
+		err := json.NewDecoder(response.Body).Decode(&courseList)
+		if err != nil {
+			panic(err)
+		}
+
+		coursesJson, error := json.Marshal(courseList.Courses)
+		if error != nil {
+			panic(error)
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.WriteHeader(200)
+		w.Write(coursesJson)
+	}
+}
+
 func UdacityCourses (w http.ResponseWriter, r *http.Request) {
-	url := "https://www.udacity.com/public-api/v0/courses"
+	appConfig := config.Get()
+
+	url := appConfig.Endpoints.UdacityUrl
 	response, err := http.Get(url)
 	if err != nil {
 		panic(err)
