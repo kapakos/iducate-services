@@ -1,5 +1,13 @@
 package model
 
+type CourseCollection interface {
+	getModel() []Courses
+}
+
+func (c UdacityCourseCollection) getModel() UdacityCourseCollection {
+	return c;
+}
+
 type UdacityCourseCollection struct {
 	Courses []struct {
 		Key                  string `json:"key"`
