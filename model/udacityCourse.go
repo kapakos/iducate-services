@@ -1,21 +1,13 @@
 package model
 
-type CourseCollection interface {
-	getModel() []Courses
-}
-
-func (c UdacityCourseCollection) getModel() UdacityCourseCollection {
-	return c;
-}
-
 type UdacityCourseCollection struct {
 	Courses []struct {
 		Key                  string `json:"key"`
 		Title                string `json:"title"`
 		Summary              string `json:"summary"`
 		Image                string `json:"image"`
-		/*Featured             bool `json:"featured"`
 		Homepage             string `json:"homepage"`
+		/*Featured             bool `json:"featured"`
 		ProjectName          string `json:"project_name"`
 		Subtitle             string `json:"subtitle"`
 		ShortSummary         string `json:"short_summary"`

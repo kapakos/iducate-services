@@ -72,7 +72,8 @@ func CourseraCourses (w http.ResponseWriter, r *http.Request) {
 	appConfig := config.Get()
 
 	url := appConfig.Endpoints.CourseraUrl
-	courseList := model.CourseraCourseCollection{}
+	collection := model.CourseraCourseCollection{}
+	courseList := collection.GetCourses()
 	SendCourses(url,  &courseList, w)
 }
 

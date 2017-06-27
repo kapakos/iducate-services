@@ -31,3 +31,7 @@ type CourseraCourseCollection struct {
 	Linked struct {
 	} `json:"linked"`
 }
+
+func (c *CourseraCourseCollection) GetCourses() *CourseraCourseCollection {
+	return c;
+}

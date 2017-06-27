@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 )
 
-func SendCourses(url string, m *model.CourseraCourseCollection, w http.ResponseWriter) {
+func SendCourses(url string, m model.CourseCollection, w http.ResponseWriter) {
 response, err := http.Get(url)
 	if err != nil {
 		panic(err)
