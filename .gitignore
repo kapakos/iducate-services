@@ -4,3 +4,4 @@ iducate-services
 .env
 .docker_build/
 Dockerfile
+*.swp
