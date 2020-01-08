@@ -3,7 +3,7 @@ package data
 import (
 	"time"
 	"fmt"
-	"../model"
+	"github.com/kapakos/iducate-services/model"
 )
 
 var currentId int

@@ -7,9 +7,10 @@ import (
 	"github.com/gorilla/mux"
 	"io/ioutil"
 	"io"
-	"time"
-	"../model"
-	"../data"
+	"github.com/kapakos/iducate-services/model"
+	"github.com/kapakos/iducate-services/data"
+	"github.com/kapakos/iducate-services/config"
+	"log"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -17,12 +18,6 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func UserIndex(w http.ResponseWriter, r *http.Request) {
-	/*claims, ok := r.Context().Value(middleware.MyKey).(model.Claims)
-	if !ok {
-		http.NotFound(w, r)
-		return
-	}
-*/
 	w.Header().Set("Content-Type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 
@@ -67,17 +62,22 @@ func UserCreate( w http.ResponseWriter, r * http.Request) {
 }
 
 func Status(w http.ResponseWriter, r *http.Request) {
+	log.Println("Servus Status")
 	w.Write([]byte("Api is up and running"))
 }
 
-func Logout(w http.ResponseWriter, r *http.Request) {
-	deleteCookie := http.Cookie{Name: "Auth", Value: "none", Expires: time.Now()}
-	http.SetCookie(w, &deleteCookie)
-	return
+func CourseraCourses (w http.ResponseWriter, r *http.Request) {
+	appConfig := config.Get()
+
+	url := appConfig.Endpoints.CourseraUrl
+	courseList := model.CourseraCourseCollection{}
+	SendCourses(url,  &courseList, w)
 }
 
 func UdacityCourses (w http.ResponseWriter, r *http.Request) {
-	url := "https://www.udacity.com/public-api/v0/courses"
+	appConfig := config.Get()
+
+	url := appConfig.Endpoints.UdacityUrl
 	response, err := http.Get(url)
 	if err != nil {
 		panic(err)

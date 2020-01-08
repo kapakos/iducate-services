@@ -1,0 +1,5 @@
+# iducate services configuration
+
+[endpoints]
+courseraUrl = "https://api.coursera.org/api/courses.v1?fields=certificates,startDate,workload,previewLink,specializations,s12nIds,domainTypes,categories,partnerIds,photoUrl,primaryLanguages,subtitleLanguages,instructorIds,description,partnerLogo,certificates"
+udacityUrl = "https://www.udacity.com/public-api/v0/courses"
