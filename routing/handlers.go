@@ -7,7 +7,6 @@ import (
 	"github.com/gorilla/mux"
 	"io/ioutil"
 	"io"
-	"github.com/dgrijalva/jwt-go"
 	"time"
 	"../model"
 	"../data"
@@ -69,53 +68,6 @@ func UserCreate( w http.ResponseWriter, r * http.Request) {
 
 func Status(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Api is up and running"))
-}
-
-var signingKey = []byte("secret")
-func SetToken(w http.ResponseWriter, r *http.Request) {
-
-	if err := r.ParseForm() ; err != nil {
-		panic(err)
-	}
-
-	username := r.FormValue("username")
-	password := r.FormValue("password")
-
-	if username != "petros" || password != "password" {
-		w.WriteHeader(http.StatusUnauthorized)
-	}
-
-	expireToken := time.Now().Add(time.Hour * 1).Unix()
-	//expireCookie := time.Now().Add(time.Hour * 1)
-
-	claims := model.Claims{
-		username,
-		jwt.StandardClaims{
-			ExpiresAt: expireToken,
-			Issuer: "localhost:8080",
-
-		},
-	}
-
-	// create token using claims
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-
-	signedToken, err := token.SignedString(signingKey)
-
-	if err != nil {
-		panic(err)
-	}
-	// Either write token into cookie
-	/*cookie := http.Cookie{Name: "Auth", Value: signedToken, Expires:expireCookie, HttpOnly:true}
-	http.SetCookie(w, &cookie)*/
-
-	// Or send a response with the token
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	// w.Write([]byte(signedToken))
-	if err := json.NewEncoder(w).Encode(signedToken); err != nil {
-		panic(err)
-	}
 }
 
 func Logout(w http.ResponseWriter, r *http.Request) {
